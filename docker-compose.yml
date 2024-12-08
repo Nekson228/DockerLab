@@ -1,0 +1,25 @@
+services:
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: neepaw
+      POSTGRES_PASSWORD: nekson
+      POSTGRES_DB: clinic
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  web:
+    build: .
+    environment:
+      POSTGRES_URL: postgresql+psycopg2://neepaw:nekson@db:5432/clinic
+    ports:
+      - "5001:5000"
+    depends_on:
+      db:
+        condition: service_healthy
+
